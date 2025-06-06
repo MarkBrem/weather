@@ -2,7 +2,7 @@ export const App = () => {
   return (
     <div
     >
-      Hello
+      H
     </div>
   );
 };
