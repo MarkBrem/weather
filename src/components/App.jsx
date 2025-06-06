@@ -2,7 +2,7 @@ export const App = () => {
   return (
     <div
     >
-      R
+      Hello
     </div>
   );
 };
