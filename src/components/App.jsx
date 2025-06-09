@@ -1,8 +1,7 @@
+import { Container } from "./container/Container";
+
 export const App = () => {
-  return (
-    <div
-    >
-      R
-    </div>
-  );
+  return <>
+  <Container/>
+  </>
 };
