@@ -5,17 +5,20 @@ import { BsSpeedometer } from "react-icons/bs";
 import { LuThermometerSun } from "react-icons/lu";
 import { WiHumidity } from "react-icons/wi";
 import { currentWeatherData } from "components/API/API";
-import { hourlyForecast } from "components/API/API";
 
 export const DetailedInformation =()=>{
     const {weather, setWeather} = useState(null)
 
-    useEffect()
+     useEffect(async ()=>{
+        const result = await currentWeatherData(44.34, 10.99);
+        setWeather(result)
+    })  
 
-    return<>
+    return <>
+    {weather ? 
         <ul>
             <li><p>Feels like</p>
-                <p></p>
+                <p>{weather}</p>
                 <LuThermometerSun/>
             </li>
             <li><p>Min ℃</p>
@@ -42,6 +45,7 @@ export const DetailedInformation =()=>{
                 <p></p>
                 <MdVisibility/>
             </li>
-        </ul>
+        </ul> : <p>NOTHING</p>}
     </>
+   
 }
