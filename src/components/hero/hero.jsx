@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {saveWeatherToLocalStorage} from '../API/API'
 import { InputText, InputButton, InputContainer, SectionContainer, Title, TextContainer, FirstTextContainer, SecondTextContainer, Text } from './heroStyled';
+import { ToastContainer } from 'react-toastify';
 
 export const WeatherInput = () => {
   const [city, setCity] = useState('');
@@ -17,6 +18,7 @@ export const WeatherInput = () => {
 
   return (
     <SectionContainer>
+      <ToastContainer position="top-right" autoClose={3000} />
         <Title>Weather dashboard</Title>
         <TextContainer>
             <FirstTextContainer>
