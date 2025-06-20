@@ -6,11 +6,21 @@ export const ContainerStyled = styled.div`
   align-items: center;
   flex-direction: column;
 
-  min-width: 1140px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px 15px 80px 15px;
+    width: 834px;
+@media only screen and (max-width: 833px) {
+   width: 393px
+}
 
-  
-`;
+@media only screen and (min-width: 1440px) {
+   width: 1440px
+}
+
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 15px 15px 80px 15px;
+
+`
+
