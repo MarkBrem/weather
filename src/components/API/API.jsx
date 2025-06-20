@@ -1,14 +1,15 @@
-export const weatherAPI = 'https://api.openweathermap.org/data/2.5/';
-export const weatherAPIKey = 'weather?q=59efeb17653fc1614f02336a18a7cc5a';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+export const weatherAPI = 'https://api.openweathermap.org/data/2.5/';
+export const weatherAPIKey = '59efeb17653fc1614f02336a18a7cc5a';
 
 export const saveWeatherToLocalStorage = async (cityName) => {
+  console.log(toast);
   if (!cityName) return;
 
   try {
     const response = await fetch(
-      `${weatherAPI}${cityName}&appid=${weatherAPIKey}&units=metric`
+      `${weatherAPI}weather?q=${cityName}&appid=${weatherAPIKey}&units=metric`
     );
     const data = await response.json();
 
@@ -44,6 +45,3 @@ export const saveWeatherToLocalStorage = async (cityName) => {
     toast.error('Сталася помилка при збереженні');
   }
 };
-
-
-// ваіа

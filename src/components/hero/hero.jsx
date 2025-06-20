@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 export const WeatherInput = () => {
   const [city, setCity] = useState('');
 
+  console.log(city);
   const handleChange = (e) => {
     setCity(e.target.value);
   };
