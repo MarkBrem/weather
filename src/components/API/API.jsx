@@ -44,3 +44,6 @@ export const saveWeatherToLocalStorage = async (cityName) => {
     toast.error('Сталася помилка при збереженні');
   }
 };
+
+
+// ваіа
