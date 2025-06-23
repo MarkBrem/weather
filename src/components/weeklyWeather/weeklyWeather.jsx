@@ -7,6 +7,7 @@ export const WeatherButton = () => {
   const [forecast, setForecast] = useState(null);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   useEffect(() => {
     fetchWeather('Kyiv').then(result => {
       setForecast(result);
@@ -22,6 +23,8 @@ export const WeatherButton = () => {
   };
 
 =======
+=======
+>>>>>>> Stashed changes
 
 
   
@@ -41,6 +44,9 @@ useEffect(()=>{
   };
 
 console.log(forecast);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   return (
     <Wrapper>
