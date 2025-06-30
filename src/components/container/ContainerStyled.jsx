@@ -7,7 +7,14 @@ export const ContainerStyled = styled.div`
     flex-direction: column;
 
 
-    width: 1440px;
+    width: 834px;
+@media only screen and (max-width: 833px) {
+   width: 393px
+}
+
+@media only screen and (min-width: 1440px) {
+   width: 1440px
+}
 
     text-align: center;
 
