@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { WeatherList } from "./WeatherList";
 import { weatherAPI, weatherAPIKey } from "../API/API";
+import { Container } from "components/container/Container";
 
 export const WeatherContainer = () => {
   const [weatherData, setWeatherData] = useState([]);
@@ -62,5 +63,5 @@ export const WeatherContainer = () => {
     }
   };
 
-  return <WeatherList weatherArray={weatherData} onUpdateCity={updateCityWeather} onDeleteCity={deleteCity} />;
+  return <Container><WeatherList weatherArray={weatherData} onUpdateCity={updateCityWeather} onDeleteCity={deleteCity} /></Container>;
 };
