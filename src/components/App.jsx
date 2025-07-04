@@ -6,11 +6,10 @@ import { WeatherInput } from './hero/hero';
 export const App = () => {
   return (
     <>
-      <Container children={<WeatherInput />} />
-      <Container>
+      <WeatherInput />
         <DetailedInformation />
         <HourlyForecastChart />
-      </Container>
+      
     </>
   );
 };
