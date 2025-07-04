@@ -6,7 +6,7 @@ export const WeatherButton = () => {
   const [forecast, setForecast] = useState(null);
 
   useEffect(() => {
-    fetchWeather('Kyiv').then(result => {
+    fetchWeather(44.34, 10.99).then(result => {
       setForecast(result);
     });
   });
