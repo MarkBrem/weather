@@ -4,10 +4,12 @@ import logo2 from './footerImg/logo2.png';
 import instagram from './footerImg/instagram.png';
 import facebook from './footerImg/facebook.png';
 import whatsapp from './footerImg/whatsapp.png';
+import { Container } from 'components/container/Container';
 
 export function Footer() {
   return (
     <>
+    <Container>
       <section>
         <s.mainDiv id="footer">
           <s.elementsDiv id="elements">
@@ -70,6 +72,7 @@ export function Footer() {
           </s.elementsDiv>
         </s.mainDiv>
       </section>
+      </Container>
     </>
   );
 }
