@@ -6,10 +6,10 @@ export const WeatherButton = () => {
 
   const [forecast, setForecast] = useState(null);
 
-<<<<<<< Updated upstream
+
   useEffect(() => {
     fetchWeather(44.34, 10.99).then(result => {
-      setForecast(result);
+      setForecast(result.daily);
     });
   });
 
@@ -23,27 +23,7 @@ export const WeatherButton = () => {
 
   console.log(forecast);
 
-=======
 
-
-  
-useEffect(()=>{
-  fetchWeather('Kyiv')
-  .then((result)=>{
-      setForecast(result); 
-  })
-})
-  
- const getDate = (dt) => {
-    return new Date(dt * 1000).toLocaleDateString("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    });
-  };
-
-console.log(forecast);
->>>>>>> Stashed changes
   return (
     <Wrapper>
       <Btn onClick={fetchWeather}>Show 7-day Forecast</Btn>
