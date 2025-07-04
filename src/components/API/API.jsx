@@ -17,7 +17,8 @@ export const weatherAPIKey = 'fa7df161e28ac48bf269317725e11673';
 //   };
 
 
-  export const fetchWeather = async (lat, lon) => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherAPIKey}&units=metric`);
+export const fetchWeeklyWeather = async (lat, lon) => {
+  
+    const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=40207e285e43c5b8e49ba7f2599cdd4b&units=metric`);
     return await response.json();
 }

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, Tittle, List } from './weeklyWeather.styled';
-import { fetchWeather } from 'components/API/API';
+import { fetchWeeklyWeather } from 'components/API/API';
 
 export const WeatherButton = () => {
 
   const [forecast, setForecast] = useState(null);
 
-<<<<<<< Updated upstream
+
   useEffect(() => {
-    fetchWeather(44.34, 10.99).then(result => {
-      setForecast(result);
+    fetchWeeklyWeather(44.34, 10.99).then(result => {
+    
+      setForecast(result.daily);
     });
   });
 
@@ -23,30 +24,30 @@ export const WeatherButton = () => {
 
   console.log(forecast);
 
-=======
+
 
 
   
-useEffect(()=>{
-  fetchWeather('Kyiv')
-  .then((result)=>{
-      setForecast(result); 
-  })
-})
+// useEffect(()=>{
+//   fetchWeather('Kyiv')
+//   .then((result)=>{
+//       setForecast(result); 
+//   })
+// })
   
- const getDate = (dt) => {
-    return new Date(dt * 1000).toLocaleDateString("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    });
-  };
+//  const getDate = (dt) => {
+//     return new Date(dt * 1000).toLocaleDateString("en-US", {
+//       weekday: "short",
+//       month: "short",
+//       day: "numeric",
+//     });
+//   };
 
-console.log(forecast);
->>>>>>> Stashed changes
+// console.log(forecast);
+
   return (
     <Wrapper>
-      <Btn onClick={fetchWeather}>Show 7-day Forecast</Btn>
+      <Btn onClick={fetchWeeklyWeather}>Show 7-day Forecast</Btn>
       <Tittle>8-day forecast</Tittle>
       <List>
         {forecast &&
