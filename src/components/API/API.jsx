@@ -3,6 +3,29 @@ import 'react-toastify/dist/ReactToastify.css';
 export const weatherAPI = 'https://api.openweathermap.org/data/2.5/';
 export const weatherAPIKey = '59efeb17653fc1614f02336a18a7cc5a';
 
+// export const fetchWeather = async (city) => {
+//     try {
+//       const res = await fetch(
+//         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherAPIKey}`
+
+
+        
+//       );
+//       const data = await res.json();
+//       console.log('7-day forecast:', data);
+//     } catch (err) {
+//       console.error('Error fetching forecast:', err);
+//     }
+//   };
+
+
+export const fetchWeeklyWeather = async (lat, lon) => {
+  
+    const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=40207e285e43c5b8e49ba7f2599cdd4b&units=metric`);
+    return await response.json();
+}
+
+
 export const saveWeatherToLocalStorage = async (cityName) => {
   console.log(toast);
   if (!cityName) return;
