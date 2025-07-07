@@ -10,34 +10,12 @@ import { Container } from "./container/Container";
 
 
 export const App = () => {
-  const [coord, setCoord] = useState(null)
-  const [showDetail, setDetail] = useState(false);
-  const [showHourlyForecast, setHourlyForecast] = useState(false)
-
-  const handleShowDetail = ()=>{
-    setDetail(prevState => !prevState)
-  }
-
-  const handleShowWeeklyWeather = ()=>{
-    setDetail(prevState => !prevState)
-  }
-  const handleShowHourlyForecast = ()=>{
-    setHourlyForecast(prevState => !prevState)
-  }
-
-  const changeCoord = (obj)=>{
-    setCoord(obj)
-  }
-
   return (
     <>
   <Container/>
   <WeatherButton/>
       <WeatherInput />
-      <WeatherContainer changeCoord={changeCoord} handleShowDetail={handleShowDetail} handleShowHourlyForecast={handleShowHourlyForecast} handleShowWeeklyWeather={handleShowWeeklyWeather}/>
-      {showDetail && <DetailedInformation coord={coord}/>}
-      {showHourlyForecast && <HourlyForecastChart coord={coord}/>}
-
+      <WeatherContainer/>
       <Footer/>
     </>
   );
