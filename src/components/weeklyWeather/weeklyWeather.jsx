@@ -50,23 +50,24 @@ export const WeatherButton = () => {
       <Btn onClick={fetchWeeklyWeather}>Show 7-day Forecast</Btn>
       <Tittle>8-day forecast</Tittle>
       <List>
-        {forecast &&
-          forecast.map((day, index) => (
-            <li key={index}>
-              <span>{getDate(day.dt)}</span>
+        {forecast && <p>рендер компонента</p>
+          // forecast.map((day, index) => (
+          //   <li key={index}>
+          //     <span>{getDate(day.dt)}</span>
 
-              <img
-                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                alt="icon"
-              />
+          //     <img
+          //       src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+          //       alt="icon"
+          //     />
 
-              <span>
-                {Math.round(day.temp.max)}° / {Math.round(day.temp.min)}°C
-              </span>
+          //     <span>
+          //       {Math.round(day.temp.max)}° / {Math.round(day.temp.min)}°C
+          //     </span>
 
-              <span>{day.weather[0].description}</span>
-            </li>
-          ))}
+          //     <span>{day.weather[0].description}</span>
+          //   </li>
+          // ))
+          }
       </List>
     </Wrapper>
   );

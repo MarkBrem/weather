@@ -6,6 +6,11 @@ import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
 
 export const App = () => {
+
+
+const handleShowWeather = ()=>{
+    setDetail(prevState => !prevState)
+  }
   return (
     <>
   <Container/>
