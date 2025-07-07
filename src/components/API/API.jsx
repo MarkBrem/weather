@@ -46,7 +46,14 @@ export const saveWeatherToLocalStorage = async (cityName) => {
       country: data.sys.country,
       temperature: data.main.temp,
       date: new Date().toLocaleString(),
+      coord: {
+        lat: data.coord.lat,
+        lon: data.coord.lon,
+      },
+
     };
+
+
 
     const existing = JSON.parse(localStorage.getItem('weatherHistory')) || [];
 
@@ -68,3 +75,15 @@ export const saveWeatherToLocalStorage = async (cityName) => {
     toast.error('Сталася помилка при збереженні');
   }
 };
+
+export const currentWeatherData = async (lat, lon) => {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherAPIKey}&units=metric`);
+    return await response.json();
+}
+
+export const hourlyForecast = async (lat, lon) => {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherAPIKey}&units=metric`);
+    return await response.json();
+}
+
+
