@@ -73,5 +73,10 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
     }
   };
 
-  return <Container><WeatherList changeCoord={changeCoord} handleShowHourlyForecast={handleShowHourlyForecast} handleShowDetail = {handleShowDetail} weatherArray={weatherData} onUpdateCity={updateCityWeather} onDeleteCity={deleteCity} /></Container>;
+return <Container><WeatherList
+      weatherArray={weatherData}
+      onUpdateCity={updateCityWeather}
+      onDeleteCity={deleteCity} 
+      />
+      </Container>
 };
