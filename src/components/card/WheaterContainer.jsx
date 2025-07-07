@@ -3,7 +3,7 @@ import { WeatherList } from "./WeatherList";
 import { weatherAPI, weatherAPIKey } from "../API/API";
 import { Container } from "components/container/Container";
 
-export const WeatherContainer = () => {
+export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, changeCoord}) => {
   const [weatherData, setWeatherData] = useState([]);
 
   useEffect(() => {
@@ -25,17 +25,27 @@ export const WeatherContainer = () => {
         `${weatherAPI}${cityName}&appid=${weatherAPIKey}&units=metric`
       );
       const data = await response.json();
-
+      
+      console.log("API data:", data);
+      
       if (data.cod !== 200) {
         alert("Місто не знайдено");
         return;
+        
       }
+      
+
 
       const updatedWeather = {
         city: data.name,
         country: data.sys.country,
         temperature: data.main.temp,
         date: new Date().toLocaleString(),
+         coord: {
+        lat: data.coord.lat,
+        lon: data.coord.lon,
+      },
+        
       };
 
       const existing = JSON.parse(localStorage.getItem("weatherHistory")) || [];
@@ -63,5 +73,5 @@ export const WeatherContainer = () => {
     }
   };
 
-  return <Container><WeatherList weatherArray={weatherData} onUpdateCity={updateCityWeather} onDeleteCity={deleteCity} /></Container>;
+  return <Container><WeatherList changeCoord={changeCoord} handleShowHourlyForecast={handleShowHourlyForecast} handleShowDetail = {handleShowDetail} weatherArray={weatherData} onUpdateCity={updateCityWeather} onDeleteCity={deleteCity} /></Container>;
 };

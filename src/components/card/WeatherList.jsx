@@ -15,7 +15,7 @@ import {
 
 } from "./WeatherList.styled";
 
-export const WeatherCard = ({ weather, onUpdate, onDelete }) => {
+export const WeatherCard = ({ weather, onUpdate, onDelete, handleShowDetail, handleShowHourlyForecast, changeCoord }) => {
   return (
     <Card>
       <CardHeader>
@@ -24,24 +24,24 @@ export const WeatherCard = ({ weather, onUpdate, onDelete }) => {
       </CardHeader>
 
       <Time>{weather.time}</Time>
-      <HourlyButton>Hourly forecast</HourlyButton> <WeeklyButton>Weekly forecast</WeeklyButton>
+      <HourlyButton onClick={()=>{handleShowHourlyForecast(); changeCoord({lat: weather.coord.lat, lon: weather.coord.lon}); }}>Hourly forecast</HourlyButton> <WeeklyButton>Weekly forecast</WeeklyButton>
       <DateText>{weather.date} </DateText>
       <Temperature>{Math.round(weather.temperature)}°C</Temperature>
 
       <CardActions>
         <UpdateButton onClick={() => onUpdate(weather.city)}>Оновити</UpdateButton>
         <DeleteButton onClick={() => onDelete(weather.city)}>Delete</DeleteButton>
-        <SeeMoreButton>See more</SeeMoreButton>
+        <SeeMoreButton onClick={()=>{handleShowDetail(); changeCoord({lat: weather.coord.lat, lon: weather.coord.lon});}}>See more</SeeMoreButton>
       </CardActions>
     </Card>
   );
 };
 
-export const WeatherList = ({ weatherArray, onUpdateCity, onDeleteCity }) => {
+export const WeatherList = ({ weatherArray, onUpdateCity, onDeleteCity,  handleShowDetail, handleShowHourlyForecast, changeCoord}) => {
   return (
     <CardList>
       {weatherArray.map((item, index) => (
-        <WeatherCard key={index} weather={item} onUpdate={onUpdateCity} onDelete={onDeleteCity} />
+        <WeatherCard key={index} weather={item} onUpdate={onUpdateCity} onDelete={onDeleteCity} handleShowDetail={handleShowDetail} handleShowHourlyForecast={handleShowHourlyForecast} changeCoord={changeCoord}/>
       ))}
     </CardList>
   );

@@ -9,17 +9,18 @@ import { DetailInformList, DetailInformCard, DetailInformCardTitle, DetailInform
 import { Container } from 'components/container/Container'; 
 
 
-export const DetailedInformation =()=>{
+export const DetailedInformation =({coord})=>{
     const [weather, setWeather] = useState(null)
 
-     useEffect(()=>{
-     currentWeatherData(44.34 , 10.99).then(res => setWeather(res))
-        
-    },[])  
+     useEffect(() => {
+  if (coord?.lat && coord?.lon) {
+    currentWeatherData(coord.lat , coord.lon).then(res => setWeather(res));
+  }
+}, [coord]);  
 
     return <>
     <Container>
-    {weather ? 
+    {weather && 
         <DetailInformList>
             <DetailInformCard><DetailInformCardTitle>Feels like</DetailInformCardTitle>
                 <DetailInformCardValue>{weather.main.feels_like}℃</DetailInformCardValue>
@@ -50,7 +51,7 @@ export const DetailedInformation =()=>{
                 <MdVisibility size={60}/>
             </DetailInformCard>
             
-        </DetailInformList> : <p>NOTHING</p>}
+        </DetailInformList>}
     </Container>    
     </>
    

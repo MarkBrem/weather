@@ -23,7 +23,14 @@ export const saveWeatherToLocalStorage = async (cityName) => {
       country: data.sys.country,
       temperature: data.main.temp,
       date: new Date().toLocaleString(),
+      coord: {
+        lat: data.coord.lat,
+        lon: data.coord.lon,
+      },
+
     };
+
+
 
     const existing = JSON.parse(localStorage.getItem('weatherHistory')) || [];
 
