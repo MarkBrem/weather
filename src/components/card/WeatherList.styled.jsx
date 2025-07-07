@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
+
+
 export const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 60px;
   justify-content: center;
   padding: 20px;
 
   @media (max-width: 1024px) {
      justify-content: space-evenly;
-     gap: 16px;
+     gap: 40px;
      padding: 16px;
   }
 
   @media (max-width: 834px) {
     flex-direction: row;
     justify-content: center;
-    gap: 12px;
+    gap: 40px;
   }
 
   @media (max-width: 600px) {
@@ -26,9 +28,9 @@ export const CardList = styled.div`
 `;
 
 export const Card = styled.div`
-  background: #fff;
+  background: #E8E8E8;
   padding: 20px;
-  width: 280px;
+  width: 320px;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
@@ -40,7 +42,7 @@ export const Card = styled.div`
   }
 
   @media (max-width: 600px) {
-    width: 90%;
+    width: 85%;
   }
 
   &:hover {
@@ -53,93 +55,95 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #333;
+  color: rgb(0, 0, 0);
 `;
 
 export const Time = styled.h2`
   margin: 16px 0 8px;
-  font-size: 28px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
 `;
 
 export const DateText = styled.p`
   margin: 0;
-  font-size: 13px;
-  color: #777;
+  font-size: 14px;
+  margin-top: 15px;
+  color: rgb(0, 0, 0);
 `;
 
 export const Temperature = styled.h2`
   font-size: 28px;
-  margin: 20px 0;
+  margin-bottom: 38px;
+  margin-top: 14px;
+
 `;
+
+export const SunImage = styled.img`
+  margin-top: 22px;
+`
+
+export const LikeButton = styled.button`
+  border: none;
+  margin-left: 15px;
+  margin-right: 37px;
+  background: rgb(232, 232, 232);
+`
 
 export const SeeMoreButton = 
 styled.button`
-    width: 93px;
-    height: 23px;
+    width: 99px;
+    height: 28px;
     font-family: Montserrat;
     font-size: 9px;
-    background: #ff8c42;
+    background: rgb(255, 179, 108);
     color: black;
-    padding: 8px 16px;
+    margin-right: 37px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
-    margin-top: 10px;
 
     &:hover {
         background: #e77b36;
     }
+`;
 
-`
+
+
 export const UpdateButton = 
 styled.button`
-    width: 93px;
-    height: 23px;
-    font-family: Montserrat;
-    font-size: 9px;
-    background: #ff8c42;
-    color: black;
-    padding: 8px 16px;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 10px;
-
-    &:hover {
-        background: #e77b36;
-    }
+    background: rgb(232, 232, 232);
 `
 
 export const HourlyButton = 
 styled.button`
-    width: 93px;
-    height: 23px;
+    width: 114px;
+    height: 28px;
     font-family: Montserrat;
-    font-size: 9px;
-    background: #ff8c42;
+    font-size: 10px;
+    background: rgb(255, 179, 108);
     color: black;
-    padding: 8px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
     margin-top: 10px;
+    margin-right: 15px;
 
     &:hover {
-        background: #e77b36;
+        background: #e27029;
     }
 `
 
 export const WeeklyButton = 
 styled.button`
-    width: 93px;
-    height: 23px;
-    background: #ff8c42;
+    width: 117px;
+    height: 28px;
+    background: rgb(255, 179, 108);
     font-family: Montserrat;
-    font-size: 9px;
+    font-size: 10px;
     color: black;
-    padding: 8px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
     margin-top: 10px;
 
@@ -150,26 +154,15 @@ styled.button`
 
 export const DeleteButton = 
 styled.button`
-    width: 93px;
-    height: 23px;
-    background: #ff8c42;
-    font-family: Montserrat;
-    font-size: 9px;
+    width: 32px;
+    height: 32px;
     color: black;
-    padding: 8px 16px;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 10px;
+    background: rgb(232, 232, 232);
 
-    &:hover {
-        background: #e77b36;
-    }
 `
 
 export const CardActions = styled.div`
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 12px;
 `;

@@ -26,7 +26,7 @@ export const WeatherInput = () => {
 <Text>October 2023 Friday, 13th</Text>
             </SecondTextContainer>
         </TextContainer>
-        <InputContainer onSubmit={handleSubmit}>
+        <InputContainer onSubmit={handleSubmit} >
       <InputText
         type="text"
         placeholder="Введіть місто"
