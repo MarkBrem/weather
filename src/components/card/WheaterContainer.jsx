@@ -85,11 +85,10 @@ export const WeatherContainer = () => {
     }
   };
 
-  return (
-    <Container><WeatherList
+  return <Container><WeatherList
       weatherArray={weatherData}
       onUpdateCity={updateCityWeather}
       onDeleteCity={deleteCity}
     />
-  )</Container>;
+  </Container>
 };
