@@ -1,10 +1,12 @@
-import { WeatherContainer }  from "./card/WheaterContainer";
-import { Container } from "./container/Container";
-import { WeatherInput } from "./hero/hero";
+// import { Container } from './container/Container';
+import { Footer } from './footer/footer';
+import { WeatherInput } from './hero/hero';
 
 export const App = () => {
-  return <>
-  <Container children={<WeatherInput/>}/>
-  <WeatherContainer/>
-  </>
+  return (
+    <>
+      <WeatherInput />
+      <Footer/>
+    </>
+  );
 };
