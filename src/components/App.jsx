@@ -5,6 +5,7 @@ import {WeatherButton} from "./weeklyWeather/weeklyWeather"
 import { WeatherContainer } from './card/WheaterContainer';
 import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
+import { Container } from "./container/Container";
 
 export const App = () => {
   const [coord, setCoord] = useState(null)
@@ -26,7 +27,7 @@ export const App = () => {
   return (
     <>
   <Container/>
-  <WeatherButton/>
+  {/* <WeatherButton/> */}
       <WeatherInput />
       <WeatherContainer changeCoord={changeCoord} handleShowDetail={handleShowDetail} handleShowHourlyForecast={handleShowHourlyForecast}/>
       {showDetail && <DetailedInformation coord={coord}/>}
