@@ -6,6 +6,7 @@ import { WeatherContainer } from './card/WheaterContainer';
 import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
 import { Container } from './container/Container';
+import NewsSection from "./container/NewsSection"
 
 export const App = () => {
   const [coord, setCoord] = useState(null)
@@ -23,6 +24,21 @@ export const App = () => {
   const changeCoord = (obj)=>{
     setCoord(obj)
   }
+
+  function App() {
+  return (
+    <>
+      <WeatherInput />
+      <WeatherButton />
+      <WeatherContainer />
+      <Container />
+      <DetailedInformation />
+      <HourlyForecastChart />
+      <NewsSection />
+      <Footer />
+    </>
+  );
+}
 
   return (
     <>
