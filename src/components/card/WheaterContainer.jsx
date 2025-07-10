@@ -13,6 +13,7 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
       try {
         const parsed = JSON.parse(stored);
         setWeatherData(parsed);
+       
         previousLength.current = parsed.length;
       } catch (e) {
         console.error("Помилка при парсингу weatherHistory", e);
@@ -30,6 +31,7 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
           const parsed = JSON.parse(stored);
           if (parsed.length !== previousLength.current) {
             setWeatherData(parsed);
+            changeCoord(parsed.coord)
             previousLength.current = parsed.length;
           }
         } catch (e) {
@@ -99,7 +101,8 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
       weatherArray={weatherData}
       onUpdateCity={updateCityWeather}
     onDeleteCity={deleteCity}
-    onShowWeeklyForecast = {handleShowWeeklyForecast}
+    onShowWeeklyForecast={handleShowWeeklyForecast}
+    changeCoord={changeCoord}
     />
   </Container>
 };

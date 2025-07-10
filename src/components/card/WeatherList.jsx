@@ -41,7 +41,11 @@ export const WeatherCard = ({
       >
         Hourly forecast
       </HourlyButton>{' '}
-      <WeeklyButton onClick={onShowWeeklyForecast}>Weekly forecast</WeeklyButton>
+      <WeeklyButton onClick={() => {
+        changeCoord({ lat: weather.coord.lat, lon: weather.coord.lon })
+        onShowWeeklyForecast()
+      }
+      }>Weekly forecast</WeeklyButton>
       <DateText>{weather.date} </DateText>
       <SunImage src={SunIcon} alt="sun" />
       <Temperature>{Math.round(weather.temperature)}°C</Temperature>
