@@ -3,7 +3,7 @@ import { WeatherList } from "./WeatherList";
 import { weatherAPI, weatherAPIKey } from "../API/API";
 import { Container } from "components/container/Container";
 
-export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, changeCoord}) => {
+export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, changeCoord, handleShowWeeklyForecast}) => {
   const [weatherData, setWeatherData] = useState([]);
   const previousLength = useRef(0); 
 
@@ -98,7 +98,8 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
   return <Container><WeatherList
       weatherArray={weatherData}
       onUpdateCity={updateCityWeather}
-      onDeleteCity={deleteCity}
+    onDeleteCity={deleteCity}
+    onShowWeeklyForecast = {handleShowWeeklyForecast}
     />
   </Container>
 };

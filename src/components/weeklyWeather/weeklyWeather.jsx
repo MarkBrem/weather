@@ -2,17 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, Tittle, List } from './weeklyWeather.styled';
 import { fetchWeeklyWeather } from 'components/API/API';
 
-export const WeatherButton = () => {
+export const WeeklyWeather = ({coord}) => {
 
   const [forecast, setForecast] = useState(null);
-
-
   useEffect(() => {
-    fetchWeeklyWeather(44.34, 10.99).then(result => {
-    
-      setForecast(result.daily);
-    });
-  });
+    fetchWeeklyWeather(coord.lat, coord.lon).then(result => setForecast(result.daily));
+  },[]);
 
   const getDate = dt => {
     return new Date(dt * 1000).toLocaleDateString('en-US', {
@@ -22,55 +17,32 @@ export const WeatherButton = () => {
     });
   };
 
-  console.log(forecast);
-
-
-
-
-  
-// useEffect(()=>{
-//   fetchWeather('Kyiv')
-//   .then((result)=>{
-//       setForecast(result); 
-//   })
-// })
-  
-//  const getDate = (dt) => {
-//     return new Date(dt * 1000).toLocaleDateString("en-US", {
-//       weekday: "short",
-//       month: "short",
-//       day: "numeric",
-//     });
-//   };
-
-// console.log(forecast);
+  console.log(forecast); 
 
   return (
     <Wrapper>
-      <Btn onClick={fetchWeeklyWeather}>Show 7-day Forecast</Btn>
       <Tittle>8-day forecast</Tittle>
       <List>
-        {forecast && <p>рендер компонента</p>
-          // forecast.map((day, index) => (
-          //   <li key={index}>
-          //     <span>{getDate(day.dt)}</span>
+        {forecast && forecast.map((day, index) => (
+            <li key={index}>
+              <span>{getDate(day.dt)}</span>
 
-          //     <img
-          //       src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-          //       alt="icon"
-          //     />
+              <img
+                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                alt="icon"
+              />
 
-          //     <span>
-          //       {Math.round(day.temp.max)}° / {Math.round(day.temp.min)}°C
-          //     </span>
+              <span>
+                {Math.round(day.temp.max)}° / {Math.round(day.temp.min)}°C
+              </span>
 
-          //     <span>{day.weather[0].description}</span>
-          //   </li>
-          // ))
+              <span>{day.weather[0].description}</span>
+            </li>
+          ))
           }
       </List>
     </Wrapper>
   );
 };
 
-export default WeatherButton;
+export default WeeklyWeather;
