@@ -13,10 +13,6 @@ export const App = () => {
   const [coord, setCoord] = useState(null);;
   const [showDetail, setDetail] = useState(false);
   const [showHourlyForecast, setHourlyForecast] = useState(false);
-<<<<<<< Updated upstream
-=======
-  const [showWeaklyForecast, setWeaklyForecast] = useState(false);
->>>>>>> Stashed changes
   const [showWeekly, setshowWeekly] = useState(false);
 
   const handleShowDetail = () => {
