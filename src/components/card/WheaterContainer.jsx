@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { WeatherList } from "./WeatherList";
 import { weatherAPI, weatherAPIKey } from "../API/API";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const WeatherContainer = () => {
   const [weatherData, setWeatherData] = useState([]);
-  const previousLength = useRef(0); 
+  const previousLength = useRef(0);
 
   const syncWithLocalStorage = () => {
     const stored = localStorage.getItem("weatherHistory");
@@ -20,7 +22,7 @@ export const WeatherContainer = () => {
   };
 
   useEffect(() => {
-    syncWithLocalStorage(); 
+    syncWithLocalStorage();
 
     const interval = setInterval(() => {
       const stored = localStorage.getItem("weatherHistory");
@@ -48,7 +50,7 @@ export const WeatherContainer = () => {
       const data = await response.json();
 
       if (data.cod !== 200) {
-        alert("Місто не знайдено");
+        toast.error("Місто не знайдено");
         return;
       }
 
@@ -68,27 +70,66 @@ export const WeatherContainer = () => {
       localStorage.setItem("weatherHistory", JSON.stringify(updatedList));
       setWeatherData(updatedList);
       previousLength.current = updatedList.length;
+
+      toast.success(`Погоду для ${cityName} оновлено!`);
     } catch (error) {
       console.error("Помилка при оновленні погоди:", error);
     }
   };
 
   const deleteCity = (cityName) => {
-    const confirmed = window.confirm(`Ви точно хочете видалити це місто?`);
-    if (confirmed) {
-      const existing = JSON.parse(localStorage.getItem("weatherHistory")) || [];
-      const updatedList = existing.filter((item) => item.city !== cityName);
-      localStorage.setItem("weatherHistory", JSON.stringify(updatedList));
-      setWeatherData(updatedList);
-      previousLength.current = updatedList.length;
-    }
+    toast(
+      ({ closeToast }) => (
+        <div>
+          <p>Ви точно хочете видалити місто <strong>{cityName}</strong>?</p>
+          <button
+            onClick={() => {
+              const existing = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+              const updatedList = existing.filter((item) => item.city !== cityName);
+              localStorage.setItem("weatherHistory", JSON.stringify(updatedList));
+              setWeatherData(updatedList);
+              previousLength.current = updatedList.length;
+              toast.dismiss(); 
+            }}
+            style={{
+              marginRight: "10px",
+              padding: "5px 10px",
+              background: "#f44336",
+              fontFamily: 'Montserrat',
+              color: "#fff",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            Так
+          </button>
+          <button
+            onClick={() => toast.dismiss()}
+            style={{
+              padding: "5px 10px",
+              background: "#ccc",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            Скасувати
+          </button>
+        </div>
+      ),
+      { autoClose: false }
+    );
   };
 
   return (
-    <WeatherList
-      weatherArray={weatherData}
-      onUpdateCity={updateCityWeather}
-      onDeleteCity={deleteCity}
-    />
+    <>
+      <WeatherList
+        weatherArray={weatherData}
+        onUpdateCity={updateCityWeather}
+        onDeleteCity={deleteCity}
+      />
+      <ToastContainer />
+    </>
   );
 };
