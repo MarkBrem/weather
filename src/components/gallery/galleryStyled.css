@@ -1,0 +1,23 @@
+.swiper-slide {
+  height: 300px;
+  line-height: 300px;
+  text-align: center;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  padding: 10px 0;
+  margin: -100px 0 0 0 !important;
+  color: white !important;
+  font-size: 20px;
+  background: rgba(0,0,0,0);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0,0,0,1);
+}

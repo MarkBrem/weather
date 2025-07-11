@@ -1,7 +1,7 @@
-export const weatherAPI = 'https://api.openweathermap.org/data/2.5/';
-export const weatherAPIKey = 'weather?q=59efeb17653fc1614f02336a18a7cc5a';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+export const weatherAPI = 'https://api.openweathermap.org/data/2.5/';
+export const weatherAPIKey = 'weather?q=59efeb17653fc1614f02336a18a7cc5a';
 
 export const saveWeatherToLocalStorage = async (cityName) => {
   if (!cityName) return;
