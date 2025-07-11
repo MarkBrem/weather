@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Wrapper, Btn, Tittle, List, Card } from './weeklyWeather.styled';
+import { Wrapper, List, Card } from './weeklyWeather.styled';
 import { fetchWeeklyWeather } from 'components/API/API';
 
 export const WeeklyWeather = ({coord}) => {
@@ -8,11 +8,8 @@ export const WeeklyWeather = ({coord}) => {
 
 
   useEffect(() => {
-    fetchWeeklyWeather(44.34, 10.99).then(result => {
-    
-      setForecast(result.daily);
-    });
-  });
+    fetchWeeklyWeather(coord.lat, coord.lon).then(result => setForecast(result.daily));
+  },[]);
 
   const getDate = dt => {
     return new Date(dt * 1000).toLocaleDateString('en-US', {
@@ -28,10 +25,10 @@ export const WeeklyWeather = ({coord}) => {
     <Wrapper>
       <List>
         {forecast && forecast.map((day, index) => (
-            <Card key={index}>
+            <li key={index}>
               <span>{getDate(day.dt)}</span>
 
-           <img
+              <img
                 src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt="icon"
               />
@@ -41,7 +38,7 @@ export const WeeklyWeather = ({coord}) => {
               </span>
 
               <span>{day.weather[0].description}</span>
-            </Card>
+            </li>
           ))
           }
       </List>
