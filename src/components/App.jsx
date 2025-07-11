@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { DetailedInformation } from './detalInfo/detalInform';
 import { HourlyForecastChart } from './detalInfo/HourlyForecast';
 import { WeeklyWeather } from './weeklyWeather/weeklyWeather';
@@ -7,34 +7,30 @@ import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
 import { Container } from './container/Container';
 
+import NewsSection from "./container/NewsSection";
 
 export const App = () => {
   const [coord, setCoord] = useState(null);;
-  const [detailCoord, setDetailCoord] = useState(null);
-  const [hourlyCoord, setHourlyCoord] = useState(null);;
+  const [showDetail, setDetail] = useState(false);
+  const [showHourlyForecast, setHourlyForecast] = useState(false);;
   const [showWeekly, setshowWeekly] = useState(false);
 
-  const handleShowDetail = coord => {
-    setDetailCoord(prev =>
-      prev?.lat === coord.lat && prev?.lon === coord.lon ? null : coord
-    );
+  const handleShowDetail = () => {
+    setDetail(prevState => !prevState);
   };
 
-  const handleShowHourlyForecast = coord => {
-    setHourlyCoord(prev =>
-      prev?.lat === coord.lat && prev?.lon === coord.lon ? null : coord
-    );
+  const handleShowHourlyForecast = () => {
+    setHourlyForecast(prevState => !prevState);
   };
 
-  const changeCoord = obj => {
+  const changeCoord = (obj) => {
     setCoord(obj);
   };
 
   return (
     <>
-      <Container />
-      {/* <WeatherButton/> */}
       <WeatherInput />
+      <WeatherButton />
       <WeatherContainer
        
         changeCoord={changeCoord}
@@ -45,9 +41,11 @@ export const App = () => {
       
         // handleShowWeeklyForecast={handleShowWeeklyForecast}
       />
-      {detailCoord && <DetailedInformation coord={detailCoord}  />}
-      {hourlyCoord && <HourlyForecastChart coord={hourlyCoord}  />}
+      <Container />
+      {showDetail && <DetailedInformation coord={coord}  />}
+      {showHourlyForecast && <HourlyForecastChart coord={coord}  />}
       {showWeekly && <WeeklyWeather coord={coord} />}
+      <NewsSection />
       <Footer  />
     </>
   );
