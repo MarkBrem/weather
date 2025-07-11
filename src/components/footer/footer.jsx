@@ -9,60 +9,59 @@ import { Container } from 'components/container/Container';
 export function Footer() {
   return (
     <>
-    <Container>
       <section>
         <s.mainDiv id="footer">
           <s.elementsDiv id="elements">
-            <s.logoDiv id="column-1" class="columns">
+            <s.logoDiv id="column-1" className="columns">
               <s.logoImg id="24hForecast" src={logo2} alt="img" />
             </s.logoDiv>
-            <s.adressDiv id="column-2" class="columns">
+            <s.adressDiv id="column-2" className="columns">
               <h5 id="address">Address</h5>
-              <s.streetP id="street" class="location">
+              <s.streetP id="street" className="location">
                 Svobody str.35
               </s.streetP>
-              <s.cityP id="city" class="location">
+              <s.cityP id="city" className="location">
                 Kyiv
               </s.cityP>
-              <p id="country" class="location">
+              <p id="country" className="location">
                 Ukraine
               </p>
             </s.adressDiv>
-            <s.contactDiv id="column-3" class="columns">
+            <s.contactDiv id="column-3" className="columns">
               <s.contactsH5 id="contacts">Contact us</s.contactsH5>
               <s.socialsDiv id="social-images">
                 <s.instagramA
                   id="instagram"
-                  class="socials"
+                  className="socials"
                   href="https://www.instagram.com"
                 >
                   <img
                     id="instagram-img"
-                    class="socials-img"
+                    className="socials-img"
                     src={instagram}
                     alt="img"
                   />
                 </s.instagramA>
                 <s.facebookA
                   id="facebook"
-                  class="socials"
+                  className="socials"
                   href="https://www.facebook.com/?locale=uk_UA"
                 >
                   <img
                     id="facebook-img"
-                    class="socials-img"
+                    className="socials-img"
                     src={facebook}
                     alt="img"
                   />
                 </s.facebookA>
                 <a
                   id="whatsapp"
-                  class="socials"
+                  className="socials"
                   href="https://www.whatsapp.com/?lang=en"
                 >
                   <img
                     id="whatsapp-img"
-                    class="socials-img"
+                    className="socials-img"
                     src={whatsapp}
                     alt="img"
                   />
@@ -72,7 +71,6 @@ export function Footer() {
           </s.elementsDiv>
         </s.mainDiv>
       </section>
-      </Container>
     </>
   );
 }

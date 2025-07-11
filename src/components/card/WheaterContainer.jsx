@@ -99,6 +99,8 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
     onDeleteCity={deleteCity}
     onShowWeeklyForecast={handleShowWeeklyForecast}
     changeCoord={changeCoord}
+    handleShowDetail={handleShowDetail}
+    handleShowHourlyForecast={handleShowHourlyForecast}
     />
   </Container>
 };

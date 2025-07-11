@@ -26,7 +26,6 @@ export const WeeklyWeather = ({coord}) => {
 
   return (
     <Wrapper>
-      <Tittle>8-day forecast</Tittle>
       <List>
         {forecast && forecast.map((day, index) => (
             <li key={index}>

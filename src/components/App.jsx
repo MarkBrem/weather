@@ -12,7 +12,7 @@ import NewsSection from "./container/NewsSection";
 export const App = () => {
   const [coord, setCoord] = useState(null);;
   const [showDetail, setDetail] = useState(false);
-  const [showHourlyForecast, setHourlyForecast] = useState(false);;
+  const [showHourlyForecast, setHourlyForecast] = useState(false);
   const [showWeekly, setshowWeekly] = useState(false);
 
   const handleShowDetail = () => {
@@ -22,6 +22,10 @@ export const App = () => {
   const handleShowHourlyForecast = () => {
     setHourlyForecast(prevState => !prevState);
   };
+
+  const handleShowWeeklyForecast = () => {
+    setshowWeekly(prevState => !prevState);
+  }
 
   const changeCoord = (obj) => {
     setCoord(obj);
@@ -39,7 +43,7 @@ export const App = () => {
        
         handleShowHourlyForecast={handleShowHourlyForecast}
       
-        // handleShowWeeklyForecast={handleShowWeeklyForecast}
+        handleShowWeeklyForecast={handleShowWeeklyForecast}
       />
       <Container />
       {showDetail && <DetailedInformation coord={coord}  />}
