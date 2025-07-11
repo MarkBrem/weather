@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Wrapper, Btn, Tittle, List } from './weeklyWeather.styled';
+import { Wrapper, Btn, Tittle, List, Card } from './weeklyWeather.styled';
 import { fetchWeeklyWeather } from 'components/API/API';
 
 export const WeeklyWeather = ({coord}) => {
@@ -28,7 +28,7 @@ export const WeeklyWeather = ({coord}) => {
     <Wrapper>
       <List>
         {forecast && forecast.map((day, index) => (
-            <li key={index}>
+            <Card key={index}>
               <span>{getDate(day.dt)}</span>
 
            <img
@@ -41,7 +41,7 @@ export const WeeklyWeather = ({coord}) => {
               </span>
 
               <span>{day.weather[0].description}</span>
-            </li>
+            </Card>
           ))
           }
       </List>
