@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { WeatherList } from './WeatherList';
 import { weatherAPI, weatherAPIKey } from '../API/API';
-import { toast, ToastContainer } from 'react-toastify";
-import "react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, changeCoord, handleShowWeeklyForecast}) => {
