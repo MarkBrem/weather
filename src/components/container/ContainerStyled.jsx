@@ -1,20 +1,23 @@
 import styled from "styled-components";
 
 export const ContainerStyled = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
 
-    width: 834px;
-@media only screen and (max-width: 833px) {
-   width: 393px
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-@media only screen and (min-width: 1440px) {
-   width: 1440px
-}
+  width: 1140px;
+
+  @media screen and (min-width: 768px ) and (max-width: 1199px){
+      width: 634px;
+  }
+
+  @media screen and (max-width: 767px){
+    width: 293px;
+  }
+   
 
     text-align: center;
 
@@ -23,4 +26,5 @@ export const ContainerStyled = styled.div`
 
     padding: 15px 15px 80px 15px;
 
-`
+`;
+

@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import {saveWeatherToLocalStorage} from '../API/API'
 import { InputText, InputButton, InputContainer, SectionContainer, Title, TextContainer, FirstTextContainer, SecondTextContainer, Text } from './heroStyled';
 import { ToastContainer } from 'react-toastify';
+import { Container } from 'components/container/Container';
 
 export const WeatherInput = () => {
   const [city, setCity] = useState('');
 
+ const currentDate = new Date(); 
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
+  const formattedDate = currentDate.toLocaleDateString('en-US', options); 
+
+
+  console.log(city);
   const handleChange = (e) => {
     setCity(e.target.value);
   };
@@ -18,6 +25,7 @@ export const WeatherInput = () => {
 
   return (
     <SectionContainer>
+      <Container>
       <ToastContainer position="top-right" autoClose={3000} />
         <Title>Weather dashboard</Title>
         <TextContainer>
@@ -25,10 +33,10 @@ export const WeatherInput = () => {
                 <Text>Create your personal list of favorite cities and always be aware of the weather.</Text>
             </FirstTextContainer>
             <SecondTextContainer>
-<Text>October 2023 Friday, 13th</Text>
+<Text>{formattedDate}</Text>
             </SecondTextContainer>
         </TextContainer>
-        <InputContainer onSubmit={handleSubmit}>
+        <InputContainer onSubmit={handleSubmit} >
       <InputText
         type="text"
         placeholder="Введіть місто"
@@ -37,6 +45,7 @@ export const WeatherInput = () => {
       />
       <InputButton type="submit"></InputButton>
     </InputContainer>
+    </Container>
     </SectionContainer>
     
   );

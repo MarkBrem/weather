@@ -1,32 +1,49 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from 'react';
+import { Wrapper, List, Card } from './weeklyWeather.styled';
+import { fetchWeeklyWeather } from 'components/API/API';
 
+export const WeeklyWeather = ({coord}) => {
 
-const API_KEY = '6a79a3ff966a2e9d3bbf5eb1bfb6a4c3'; 
-const city = 'Kyiv'; 
-
-
-
-const WeatherButton = () => {
   const [forecast, setForecast] = useState(null);
 
 
-  const fetchWeather = async () => {
-    try {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=7&units=metric&appid=${API_KEY}`
-      );
-      const data = await res.json();
-      console.log('7-day forecast:', data);
-      setForecast(data); 
-    } catch (err) {
-      console.error('Error fetching forecast:', err);
-    }
+  useEffect(() => {
+    fetchWeeklyWeather(coord.lat, coord.lon).then(result => setForecast(result.daily));
+  },[]);
+
+  const getDate = dt => {
+    return new Date(dt * 1000).toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+    });
   };
+
+  console.log(forecast); 
+
   return (
-    <div>
-      <button onClick={fetchWeather}>Show 7-day Forecast</button>
-    </div>
+    <Wrapper>
+      <List>
+        {forecast && forecast.map((day, index) => (
+            <li key={index}>
+              <span>{getDate(day.dt)}</span>
+
+              <img
+                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                alt="icon"
+              />
+
+              <span>
+                {Math.round(day.temp.max)}° / {Math.round(day.temp.min)}°C
+              </span>
+
+              <span>{day.weather[0].description}</span>
+            </li>
+          ))
+          }
+      </List>
+    </Wrapper>
   );
 };
 
-export default WeatherButton;
+export default WeeklyWeather;
