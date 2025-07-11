@@ -30,7 +30,7 @@ export const App = () => {
   return (
     <>
       <WeatherInput />
-      <WeatherButton />
+      <WeeklyWeather />
       <WeatherContainer
        
         changeCoord={changeCoord}
