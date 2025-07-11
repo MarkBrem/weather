@@ -1,30 +1,26 @@
 import styled from 'styled-components';
+import { Line } from 'react-chartjs-2';
 
 export const ChartContainer = styled.div`
-   box-sizing: border-box; 
-   
-    width: 100%;
-    background-color: #E8E8E8;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(250px, 50vh, 400px);
+  padding: 20px 40px 40px;
+  background-color: #E8E8E8;
+  border-radius: 25px;
+  margin: 80px auto 0;
+  box-sizing: border-box;
 
-    padding: 20px 40px 40px 40px;
-
-    border-radius: 25px;
-
-    font-size: 11px;
-    font-weight: 500;
-
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
-
-     @media screen and (min-width: 768px) and (max-width: 1199px){
-      height: 400px;
-      margin-top: 80px;
+  @media screen and (min-width: 1200px) {
+    height: 550px;
   }
 
   @media screen and (max-width: 767px) {
-    height: 370px;
     margin-top: 35px;
   }
+`;
 
-`
+export const CanvasLine = styled(Line)`
+  width: 100% !important;
+  height: 100% !important;
+`;
