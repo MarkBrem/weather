@@ -50,7 +50,9 @@ export const App = () => {
       {showHourlyForecast && <HourlyForecastChart coord={coord}  />}
       {showWeekly && <WeeklyWeather coord={coord} />}
       <NewsSection />
+         <Gallery />
       <Footer  />
     </>
   );
 };
+
