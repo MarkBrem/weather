@@ -4,6 +4,7 @@ import { weatherAPI, weatherAPIKey } from "../API/API";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 export const WeatherContainer = () => {
   const [weatherData, setWeatherData] = useState([]);
   const previousLength = useRef(0);
