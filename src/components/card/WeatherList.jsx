@@ -48,6 +48,7 @@ export const WeatherCard = ({
       }>Weekly forecast</WeeklyButton>
       <DateText>{weather.date} </DateText>
       <SunImage src={SunIcon} alt="sun" />
+      <SunImage src={SunIcon} alt="sun" />
       <Temperature>{Math.round(weather.temperature)}°C</Temperature>
       <CardActions>
         <UpdateButton onClick={() => onUpdate(weather.city)}>

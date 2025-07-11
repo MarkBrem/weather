@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
-import { WeatherList } from "./WeatherList";
-import { weatherAPI, weatherAPIKey } from "../API/API";
-import { Container } from "components/container/Container";
+import React, { useEffect, useState, useRef } from 'react';
+import { WeatherList } from './WeatherList';
+import { weatherAPI, weatherAPIKey } from '../API/API';
+import { Container } from 'components/container/Container';
 
 export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, changeCoord, handleShowWeeklyForecast}) => {
   const [weatherData, setWeatherData] = useState([]);
-  const previousLength = useRef(0); 
+  const previousLength = useRef(0);
 
   const syncWithLocalStorage = () => {
-    const stored = localStorage.getItem("weatherHistory");
+    const stored = localStorage.getItem('weatherHistory');
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
@@ -16,16 +16,16 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
        
         previousLength.current = parsed.length;
       } catch (e) {
-        console.error("Помилка при парсингу weatherHistory", e);
+        console.error('Помилка при парсингу weatherHistory', e);
       }
     }
   };
 
   useEffect(() => {
-    syncWithLocalStorage(); 
+    syncWithLocalStorage();
 
     const interval = setInterval(() => {
-      const stored = localStorage.getItem("weatherHistory");
+      const stored = localStorage.getItem('weatherHistory');
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
@@ -35,7 +35,7 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
             previousLength.current = parsed.length;
           }
         } catch (e) {
-          console.error("Помилка при перевірці оновлення", e);
+          console.error('Помилка при перевірці оновлення', e);
         }
       }
     }, 1000);
@@ -43,55 +43,51 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
     return () => clearInterval(interval);
   }, []);
 
-  const updateCityWeather = async (cityName) => {
+  const updateCityWeather = async cityName => {
     try {
       const response = await fetch(
         `${weatherAPI}${cityName}&appid=${weatherAPIKey}&units=metric`
       );
       const data = await response.json();
-      
-      console.log("API data:", data);
-      
-      if (data.cod !== 200) {
-        alert("Місто не знайдено");
-        return;
-        
-      }
-      
 
+      console.log('API data:', data);
+
+      if (data.cod !== 200) {
+        alert('Місто не знайдено');
+        return;
+      }
 
       const updatedWeather = {
         city: data.name,
         country: data.sys.country,
         temperature: data.main.temp,
         date: new Date().toLocaleString(),
-         coord: {
-        lat: data.coord.lat,
-        lon: data.coord.lon,
-      },
-        
+        coord: {
+          lat: data.coord.lat,
+          lon: data.coord.lon,
+        },
       };
 
-      const existing = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+      const existing = JSON.parse(localStorage.getItem('weatherHistory')) || [];
 
-      const updatedList = existing.map((item) =>
+      const updatedList = existing.map(item =>
         item.city === cityName ? updatedWeather : item
       );
 
-      localStorage.setItem("weatherHistory", JSON.stringify(updatedList));
+      localStorage.setItem('weatherHistory', JSON.stringify(updatedList));
       setWeatherData(updatedList);
       previousLength.current = updatedList.length;
     } catch (error) {
-      console.error("Помилка при оновленні погоди:", error);
+      console.error('Помилка при оновленні погоди:', error);
     }
   };
 
-  const deleteCity = (cityName) => {
+  const deleteCity = cityName => {
     const confirmed = window.confirm(`Ви точно хочете видалити це місто?`);
     if (confirmed) {
-      const existing = JSON.parse(localStorage.getItem("weatherHistory")) || [];
-      const updatedList = existing.filter((item) => item.city !== cityName);
-      localStorage.setItem("weatherHistory", JSON.stringify(updatedList));
+      const existing = JSON.parse(localStorage.getItem('weatherHistory')) || [];
+      const updatedList = existing.filter(item => item.city !== cityName);
+      localStorage.setItem('weatherHistory', JSON.stringify(updatedList));
       setWeatherData(updatedList);
       previousLength.current = updatedList.length;
     }

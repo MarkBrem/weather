@@ -5,9 +5,14 @@ import { fetchWeeklyWeather } from 'components/API/API';
 export const WeeklyWeather = ({coord}) => {
 
   const [forecast, setForecast] = useState(null);
+
+
   useEffect(() => {
-    fetchWeeklyWeather(coord.lat, coord.lon).then(result => setForecast(result.daily));
-  },[]);
+    fetchWeeklyWeather(44.34, 10.99).then(result => {
+    
+      setForecast(result.daily);
+    });
+  });
 
   const getDate = dt => {
     return new Date(dt * 1000).toLocaleDateString('en-US', {
@@ -27,7 +32,7 @@ export const WeeklyWeather = ({coord}) => {
             <li key={index}>
               <span>{getDate(day.dt)}</span>
 
-              <img
+           <img
                 src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt="icon"
               />

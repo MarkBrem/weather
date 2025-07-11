@@ -2,8 +2,8 @@ import { Line } from 'react-chartjs-2';
 import { hourlyForecast } from 'components/API/API';
 import { useState, useEffect } from 'react';
 import { Container } from 'components/container/Container'; 
-import { ChartContainer } from './HourlyForecast.styled';
-import {useWindowSize} from 'react-use';
+import { ChartContainer, CanvasLine } from './HourlyForecast.styled';
+import { useWindowSize } from 'react-use';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -27,29 +27,18 @@ ChartJS.register(
 
 export const HourlyForecastChart = () => {
   const [hourlyWeather, setHourlyWeather] = useState(null);
-  const {width} = useWindowSize();
-
-  
+  const { width } = useWindowSize();
 
   const updatePointsQuantity = () => {
-
-    if(width >= 1200){
-      return 20
-    }else if(width >=768){
-      return 8
-    }else{
-        return 3
-    }
-  }
+    if (width >= 1200) return 20;
+    if (width >= 768) return 8;
+    return 3;
+  };
 
   useEffect(() => {
     hourlyForecast(44.34, 10.99).then(res => {
-
-      const quantity = updatePointsQuantity()
-
+      const quantity = updatePointsQuantity();
       const slicedList = res.list.slice(0, quantity);
-
-      
 
       const labels = slicedList.map(item => {
         const date = new Date(item.dt_txt);
@@ -69,61 +58,52 @@ export const HourlyForecastChart = () => {
             data: temps,
             borderColor: '#FFB36C',
             fill: false,
-            tension: 0.4, 
+            tension: 0.4,
             pointRadius: 3,
           },
         ],
       });
     });
-  }, []);
+  }, [width]);
 
-const options = {
-  plugins: {
-    title: {
-      display: true,
-      text: 'Hourly forecast',
-      align: 'start',
-      font: {
-        size: 20,
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Hourly forecast',
+        align: 'start',
+        font: { size: 20 },
+        padding: { top: 10, bottom: 20 },
       },
-      padding: {
-        top: 10,
-        bottom: 20,
-      },
-    },
-    legend: {
-      labels: {
-        usePointStyle: false,
-        boxWidth: 0,
-        font: {
-          size: 16,
+      legend: {
+        labels: {
+          usePointStyle: false,
+          boxWidth: 0,
+          font: { size: 16 },
         },
       },
     },
-  },
-  scales: {
-    x: {
-      position: 'top',
-    },
-    y: {
-      ticks: {
-        font: {
-          size: 14,
+    scales: {
+      x: { position: 'top' },
+      y: {
+        ticks: {
+          font: { size: 14 },
+          callback: value => value + '°C',
+          padding: 15,
         },
-        callback: (value) => value + '°C',
-        padding: 15,
       },
     },
-  },
-};
+  };
 
   if (!hourlyWeather) return null;
 
   return (
     <Container>
-    <ChartContainer>
-      <Line data={hourlyWeather} options={options}/>
-    </ChartContainer>
+      <ChartContainer>
+        <CanvasLine data={hourlyWeather} options={options} />
+      </ChartContainer>
     </Container>
   );
 };

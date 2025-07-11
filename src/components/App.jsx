@@ -7,22 +7,23 @@ import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
 import { Container } from './container/Container';
 
+
 export const App = () => {
-  const [coord, setCoord] = useState(null);
-  const [showDetail, setDetail] = useState(false);
-  const [showHourlyForecast, setHourlyForecast] = useState(false);
+  const [coord, setCoord] = useState(null);;
+  const [detailCoord, setDetailCoord] = useState(null);
+  const [hourlyCoord, setHourlyCoord] = useState(null);;
   const [showWeekly, setshowWeekly] = useState(false);
 
-  const handleShowDetail = () => {
-    setDetail(prevState => !prevState);
+  const handleShowDetail = coord => {
+    setDetailCoord(prev =>
+      prev?.lat === coord.lat && prev?.lon === coord.lon ? null : coord
+    );
   };
 
-  const handleShowHourlyForecast = () => {
-    setHourlyForecast(prevState => !prevState);
-  };
-
-  const handleShowWeeklyForecast = () => {
-    setshowWeekly(prevState => !prevState);
+  const handleShowHourlyForecast = coord => {
+    setHourlyCoord(prev =>
+      prev?.lat === coord.lat && prev?.lon === coord.lon ? null : coord
+    );
   };
 
   const changeCoord = obj => {
@@ -32,18 +33,22 @@ export const App = () => {
   return (
     <>
       <Container />
+      {/* <WeatherButton/> */}
       <WeatherInput />
       <WeatherContainer
+       
         changeCoord={changeCoord}
+       
         handleShowDetail={handleShowDetail}
+       
         handleShowHourlyForecast={handleShowHourlyForecast}
-        handleShowWeeklyForecast={handleShowWeeklyForecast}
+      
+        // handleShowWeeklyForecast={handleShowWeeklyForecast}
       />
-      {showDetail && <DetailedInformation coord={coord} />}
-      {showHourlyForecast && <HourlyForecastChart coord={coord} />}
+      {detailCoord && <DetailedInformation coord={detailCoord}  />}
+      {hourlyCoord && <HourlyForecastChart coord={hourlyCoord}  />}
       {showWeekly && <WeeklyWeather coord={coord} />}
-
-      <Footer />
+      <Footer  />
     </>
   );
 };
