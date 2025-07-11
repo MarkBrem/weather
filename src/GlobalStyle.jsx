@@ -40,4 +40,9 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
     cursor: pointer;
   }
+  img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 `;

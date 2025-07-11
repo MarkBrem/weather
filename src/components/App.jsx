@@ -6,8 +6,10 @@ import { WeatherContainer } from './card/WheaterContainer';
 import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
 import { Container } from './container/Container';
+import { GlobalStyle } from "GlobalStyle";
 
 import NewsSection from "./container/NewsSection";
+import Gallery from "./gallery/gallery";
 
 export const App = () => {
   const [coord, setCoord] = useState(null);;
@@ -55,6 +57,7 @@ export const App = () => {
       <NewsSection />
          <Gallery />
       <Footer  />
+      <GlobalStyle/>
     </>
   );
 };
