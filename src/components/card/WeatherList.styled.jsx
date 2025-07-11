@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { IoMdRefresh } from "react-icons/io";
+import { FaRegHeart } from "react-icons/fa";
+import { LuTrash2 } from "react-icons/lu";
 
 
 
@@ -89,10 +92,13 @@ export const LikeButton = styled.button`
   margin-left: 15px;
   margin-right: 37px;
   background: rgb(232, 232, 232);
+
+  &:hover {
+        cursor: pointer;
+    }
 `
 
-export const SeeMoreButton = 
-styled.button`
+export const SeeMoreButton = styled.button`
     width: 99px;
     height: 28px;
     font-family: Montserrat;
@@ -106,19 +112,22 @@ styled.button`
 
     &:hover {
         background: #e77b36;
+        cursor: pointer;
     }
 `;
 
 
 
-export const UpdateButton = 
-styled.button`
+export const UpdateButton = styled.button`
     border: none;
     background: rgb(232, 232, 232);
+
+    &:hover {
+        cursor: pointer;
+    }    
 `
 
-export const HourlyButton = 
-styled.button`
+export const HourlyButton = styled.button`
     width: 114px;
     height: 28px;
     font-family: Montserrat;
@@ -131,13 +140,20 @@ styled.button`
     margin-top: 10px;
     margin-right: 15px;
 
+    @media (max-width: 600px) {
+     margin-right: 0px;
+  }
+
+  
+
     &:hover {
         background: #e27029;
+        cursor: pointer;
     }
+    
 `
 
-export const WeeklyButton = 
-styled.button`
+export const WeeklyButton = styled.button`
     width: 117px;
     height: 28px;
     background: rgb(255, 179, 108);
@@ -151,16 +167,20 @@ styled.button`
 
     &:hover {
         background: #e77b36;
+        cursor: pointer;
     }
 `
 
-export const DeleteButton = 
-styled.button`
+export const DeleteButton = styled.button`
     width: 32px;
     height: 32px;
     color: black;
     border: none;
     background: rgb(232, 232, 232);
+
+    &:hover {
+        cursor: pointer;
+    }
 
 `
 
@@ -168,3 +188,32 @@ export const CardActions = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const HeartIcon = styled(FaRegHeart) `
+  width: 30px;
+  height: 30px;
+  fill: red;
+
+  &:hover {
+       fill: #e60d0d;
+    }   
+`
+
+export const RefreshIcon = styled(IoMdRefresh) `
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+       fill: #363232;
+    }   
+`
+
+
+export const TrashIcon = styled(LuTrash2) `
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    color: #363232;
+ } 
+`
