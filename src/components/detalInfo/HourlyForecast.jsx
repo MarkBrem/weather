@@ -25,7 +25,7 @@ ChartJS.register(
   Legend
 );
 
-export const HourlyForecastChart = () => {
+export const HourlyForecastChart = ({coord}) => {
   const [hourlyWeather, setHourlyWeather] = useState(null);
   const { width } = useWindowSize();
 
@@ -35,9 +35,10 @@ export const HourlyForecastChart = () => {
     return 3;
   };
 
-  useEffect(() => {
-    hourlyForecast(44.34, 10.99).then(res => {
-      const quantity = updatePointsQuantity();
+useEffect(() => {
+  if (coord?.lat && coord?.lon) {
+    hourlyForecast(coord.lat, coord.lon).then(res => {
+      const quantity = updatePointsQuantity(); 
       const slicedList = res.list.slice(0, quantity);
 
       const labels = slicedList.map(item => {
@@ -64,7 +65,8 @@ export const HourlyForecastChart = () => {
         ],
       });
     });
-  }, [width]);
+  }
+}, [coord, width]);
 
   const options = {
     responsive: true,

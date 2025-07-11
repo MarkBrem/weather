@@ -11,16 +11,20 @@ import NewsSection from "./container/NewsSection";
 
 export const App = () => {
   const [coord, setCoord] = useState(null);;
-  const [showDetail, setDetail] = useState(false);
-  const [showHourlyForecast, setHourlyForecast] = useState(false);
   const [showWeekly, setshowWeekly] = useState(false);
+  const [detailCoord, setDetailCoord] = useState(null);
+  const [hourlyCoord, setHourlyCoord] = useState(null);
 
-  const handleShowDetail = () => {
-    setDetail(prevState => !prevState);
+  const handleShowDetail = coord => {
+    setDetailCoord(prev =>
+      prev?.lat === coord.lat && prev?.lon === coord.lon ? null : coord
+    );
   };
 
-  const handleShowHourlyForecast = () => {
-    setHourlyForecast(prevState => !prevState);
+  const handleShowHourlyForecast = coord => {
+    setHourlyCoord(prev =>
+      prev?.lat === coord.lat && prev?.lon === coord.lon ? null : coord
+    );
   };
 
   const handleShowWeeklyForecast = () => {
@@ -34,7 +38,6 @@ export const App = () => {
   return (
     <>
       <WeatherInput />
-      <WeeklyWeather />
       <WeatherContainer
        
         changeCoord={changeCoord}
@@ -46,8 +49,8 @@ export const App = () => {
         handleShowWeeklyForecast={handleShowWeeklyForecast}
       />
       <Container />
-      {showDetail && <DetailedInformation coord={coord}  />}
-      {showHourlyForecast && <HourlyForecastChart coord={coord}  />}
+      {detailCoord && <DetailedInformation coord={detailCoord} />}
+      {hourlyCoord && <HourlyForecastChart coord={hourlyCoord} />}
       {showWeekly && <WeeklyWeather coord={coord} />}
       <NewsSection />
       <Footer  />
