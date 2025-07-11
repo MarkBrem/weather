@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
+    padding: 0;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: #000000;
@@ -38,5 +39,10 @@ export const GlobalStyle = createGlobalStyle`
     color: #000000;
     border: none;
     cursor: pointer;
+  }
+  img{
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 `;

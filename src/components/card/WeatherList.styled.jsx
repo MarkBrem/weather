@@ -82,6 +82,8 @@ export const Temperature = styled.h2`
 `;
 
 export const SunImage = styled.img`
+margin-left: auto;
+margin-right: auto;
   margin-top: 22px;
 `
 

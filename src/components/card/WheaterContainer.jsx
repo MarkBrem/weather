@@ -1,23 +1,24 @@
-import React, { useEffect, useState, useRef } from "react";
-import { WeatherList } from "./WeatherList";
-import { weatherAPI, weatherAPIKey } from "../API/API";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState, useRef } from 'react';
+import { WeatherList } from './WeatherList';
+import { weatherAPI, weatherAPIKey } from '../API/API';
+import { toast, ToastContainer } from 'react-toastify";
+import "react-toastify/dist/ReactToastify.css';
 
 
-export const WeatherContainer = () => {
+export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, changeCoord, handleShowWeeklyForecast}) => {
   const [weatherData, setWeatherData] = useState([]);
   const previousLength = useRef(0);
 
   const syncWithLocalStorage = () => {
-    const stored = localStorage.getItem("weatherHistory");
+    const stored = localStorage.getItem('weatherHistory');
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
         setWeatherData(parsed);
+       
         previousLength.current = parsed.length;
       } catch (e) {
-        console.error("Помилка при парсингу weatherHistory", e);
+        console.error('Помилка при парсингу weatherHistory', e);
       }
     }
   };
@@ -26,16 +27,17 @@ export const WeatherContainer = () => {
     syncWithLocalStorage();
 
     const interval = setInterval(() => {
-      const stored = localStorage.getItem("weatherHistory");
+      const stored = localStorage.getItem('weatherHistory');
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
           if (parsed.length !== previousLength.current) {
             setWeatherData(parsed);
+            changeCoord(parsed.coord)
             previousLength.current = parsed.length;
           }
         } catch (e) {
-          console.error("Помилка при перевірці оновлення", e);
+          console.error('Помилка при перевірці оновлення', e);
         }
       }
     }, 1000);
@@ -43,12 +45,14 @@ export const WeatherContainer = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const updateCityWeather = async (cityName) => {
+  const updateCityWeather = async cityName => {
     try {
       const response = await fetch(
         `${weatherAPI}${cityName}&appid=${weatherAPIKey}&units=metric`
       );
       const data = await response.json();
+
+      console.log('API data:', data);
 
       if (data.cod !== 200) {
         toast.error("Місто не знайдено");
@@ -60,21 +64,25 @@ export const WeatherContainer = () => {
         country: data.sys.country,
         temperature: data.main.temp,
         date: new Date().toLocaleString(),
+        coord: {
+          lat: data.coord.lat,
+          lon: data.coord.lon,
+        },
       };
 
-      const existing = JSON.parse(localStorage.getItem("weatherHistory")) || [];
+      const existing = JSON.parse(localStorage.getItem('weatherHistory')) || [];
 
-      const updatedList = existing.map((item) =>
+      const updatedList = existing.map(item =>
         item.city === cityName ? updatedWeather : item
       );
 
-      localStorage.setItem("weatherHistory", JSON.stringify(updatedList));
+      localStorage.setItem('weatherHistory', JSON.stringify(updatedList));
       setWeatherData(updatedList);
       previousLength.current = updatedList.length;
 
       toast.success(`Погоду для ${cityName} оновлено!`);
     } catch (error) {
-      console.error("Помилка при оновленні погоди:", error);
+      console.error('Помилка при оновленні погоди:', error);
     }
   };
 
