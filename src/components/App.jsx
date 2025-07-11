@@ -10,6 +10,7 @@ import { GlobalStyle } from "GlobalStyle";
 
 import NewsSection from "./container/NewsSection";
 import Gallery from "./gallery/gallery";
+import { Header } from "./header/header";
 
 export const App = () => {
   const [coord, setCoord] = useState(null);;
@@ -39,6 +40,7 @@ export const App = () => {
 
   return (
     <>
+    <Header/>
       <WeatherInput />
       <WeatherContainer
        
@@ -50,7 +52,6 @@ export const App = () => {
       
         handleShowWeeklyForecast={handleShowWeeklyForecast}
       />
-      <Container />
       {detailCoord && <DetailedInformation coord={detailCoord} />}
       {hourlyCoord && <HourlyForecastChart coord={hourlyCoord} />}
       {showWeekly && <WeeklyWeather coord={coord} />}
