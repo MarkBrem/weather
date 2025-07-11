@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { DetailedInformation } from './detalInfo/detalInform';
 import { HourlyForecastChart } from './detalInfo/HourlyForecast';
-import { WeatherButton } from "./weeklyWeather/weeklyWeather";
+import { WeatherButton } from './weeklyWeather/weeklyWeather';
 import { WeatherContainer } from './card/WheaterContainer';
 import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
