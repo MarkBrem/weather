@@ -21,3 +21,9 @@
 .swiper-button-prev:hover {
   background: rgba(0, 0, 0, 1);
 }
+
+.mySwiper {
+  @media screen and (max-width: 1439px) {
+    display: none !important;
+  }
+}

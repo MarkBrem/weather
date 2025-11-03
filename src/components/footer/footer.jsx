@@ -11,21 +11,24 @@ export function Footer() {
       <section>
         <s.mainDiv id="footer">
           <s.elementsDiv id="elements">
-            <s.logoDiv id="column-1" className="columns">
-              <s.logoImg id="24hForecast" src={logo2} alt="img" />
-            </s.logoDiv>
-            <s.adressDiv id="column-2" className="columns">
-              <h5 id="address">Address</h5>
-              <s.streetP id="street" className="location">
-                Svobody str.35
-              </s.streetP>
-              <s.cityP id="city" className="location">
-                Kyiv
-              </s.cityP>
-              <p id="country" className="location">
-                Ukraine
-              </p>
-            </s.adressDiv>
+            <s.mobileDiv>
+              <s.logoDiv id="column-1" className="columns">
+                <s.logoImg id="24hForecast" src={logo2} alt="img" />
+              </s.logoDiv>
+              <s.adressDiv id="column-2" className="columns">
+                <h5 id="address">Address</h5>
+                <s.streetP id="street" className="location">
+                  Svobody str.35
+                </s.streetP>
+                <s.cityP id="city" className="location">
+                  Kyiv
+                </s.cityP>
+                <p id="country" className="location">
+                  Ukraine
+                </p>
+              </s.adressDiv>
+            </s.mobileDiv>
+
             <s.contactDiv id="column-3" className="columns">
               <s.contactsH5 id="contacts">Contact us</s.contactsH5>
               <s.socialsDiv id="social-images">
