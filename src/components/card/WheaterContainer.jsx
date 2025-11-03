@@ -2,10 +2,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import { WeatherList } from './WeatherList';
 import { weatherAPI, weatherAPIKey } from '../API/API';
 import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 
-
-export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, changeCoord, handleShowWeeklyForecast}) => {
+export const WeatherContainer = ({
+  handleShowDetail,
+  handleShowHourlyForecast,
+  changeCoord,
+  handleShowWeeklyForecast,
+}) => {
   const [weatherData, setWeatherData] = useState([]);
   const previousLength = useRef(0);
 
@@ -15,7 +19,7 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
       try {
         const parsed = JSON.parse(stored);
         setWeatherData(parsed);
-       
+
         previousLength.current = parsed.length;
       } catch (e) {
         console.error('Помилка при парсингу weatherHistory', e);
@@ -33,7 +37,7 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
           const parsed = JSON.parse(stored);
           if (parsed.length !== previousLength.current) {
             setWeatherData(parsed);
-            changeCoord(parsed.coord)
+            changeCoord(parsed.coord);
             previousLength.current = parsed.length;
           }
         } catch (e) {
@@ -55,7 +59,7 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
       console.log('API data:', data);
 
       if (data.cod !== 200) {
-        toast.error("Місто не знайдено");
+        toast.error('Місто не знайдено');
         return;
       }
 
@@ -86,29 +90,37 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
     }
   };
 
-  const deleteCity = (cityName) => {
+  const deleteCity = cityName => {
     toast(
       ({ closeToast }) => (
         <div>
-          <p>Ви точно хочете видалити місто <strong>{cityName}</strong>?</p>
+          <p>
+            Ви точно хочете видалити місто <strong>{cityName}</strong>?
+          </p>
           <button
             onClick={() => {
-              const existing = JSON.parse(localStorage.getItem("weatherHistory")) || [];
-              const updatedList = existing.filter((item) => item.city !== cityName);
-              localStorage.setItem("weatherHistory", JSON.stringify(updatedList));
+              const existing =
+                JSON.parse(localStorage.getItem('weatherHistory')) || [];
+              const updatedList = existing.filter(
+                item => item.city !== cityName
+              );
+              localStorage.setItem(
+                'weatherHistory',
+                JSON.stringify(updatedList)
+              );
               setWeatherData(updatedList);
               previousLength.current = updatedList.length;
-              toast.dismiss(); 
+              toast.dismiss();
             }}
             style={{
-              marginRight: "10px",
-              padding: "5px 10px",
-              background: "#f44336",
+              marginRight: '10px',
+              padding: '5px 10px',
+              background: '#f44336',
               fontFamily: 'Montserrat',
-              color: "#fff",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
             }}
           >
             Так
@@ -116,11 +128,11 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
           <button
             onClick={() => toast.dismiss()}
             style={{
-              padding: "5px 10px",
-              background: "#ccc",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
+              padding: '5px 10px',
+              background: '#ccc',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
             }}
           >
             Скасувати
@@ -137,6 +149,10 @@ export const WeatherContainer = ({handleShowDetail, handleShowHourlyForecast, ch
         weatherArray={weatherData}
         onUpdateCity={updateCityWeather}
         onDeleteCity={deleteCity}
+        handleShowDetail={handleShowDetail}
+        handleShowHourlyForecast={handleShowHourlyForecast}
+        handleShowWeeklyForecast={handleShowWeeklyForecast}
+        changeCoord={changeCoord}
       />
       <ToastContainer />
     </>

@@ -1,5 +1,5 @@
-import React from "react";
-import SunIcon from "./icons/sun.svg"
+import React from 'react';
+import SunIcon from './icons/sun.svg';
 
 import {
   CardList,
@@ -19,9 +19,32 @@ import {
   RefreshIcon,
   HeartIcon,
   TrashIcon,
+} from './WeatherList.styled';
 
-
-} from "./WeatherList.styled";
+export const WeatherList = ({
+  weatherArray,
+  onUpdateCity,
+  onDeleteCity,
+  handleShowDetail,
+  handleShowHourlyForecast,
+  changeCoord,
+}) => {
+  return (
+    <CardList>
+      {weatherArray.map((item, index) => (
+        <WeatherCard
+          key={index}
+          weather={item}
+          onUpdate={onUpdateCity}
+          onDelete={onDeleteCity}
+          handleShowDetail={handleShowDetail}
+          handleShowHourlyForecast={handleShowHourlyForecast}
+          changeCoord={changeCoord}
+        />
+      ))}
+    </CardList>
+  );
+};
 
 export const WeatherCard = ({
   weather,
@@ -51,36 +74,23 @@ export const WeatherCard = ({
       <SunImage src={SunIcon} alt="sun" />
       <Temperature>{Math.round(weather.temperature)}°C</Temperature>
       <CardActions>
-        <UpdateButton onClick={() => onUpdate(weather.city)}><RefreshIcon/></UpdateButton>
-        <LikeButton><HeartIcon/></LikeButton>
-        <SeeMoreButton>See more</SeeMoreButton>
-        <DeleteButton onClick={() => onDelete(weather.city)}><TrashIcon/></DeleteButton>
+        <UpdateButton onClick={() => onUpdate(weather.city)}>
+          <RefreshIcon />
+        </UpdateButton>
+        <LikeButton>
+          <HeartIcon />
+        </LikeButton>
+        <SeeMoreButton
+          onClick={() => {
+            handleShowDetail(weather.coord);
+          }}
+        >
+          See more
+        </SeeMoreButton>
+        <DeleteButton onClick={() => onDelete(weather.city)}>
+          <TrashIcon />
+        </DeleteButton>
       </CardActions>
     </Card>
-  );
-};
-
-export const WeatherList = ({
-  weatherArray,
-  onUpdateCity,
-  onDeleteCity,
-  handleShowDetail,
-  handleShowHourlyForecast,
-  changeCoord,
-}) => {
-  return (
-    <CardList>
-      {weatherArray.map((item, index) => (
-        <WeatherCard
-          key={index}
-          weather={item}
-          onUpdate={onUpdateCity}
-          onDelete={onDeleteCity}
-          handleShowDetail={handleShowDetail}
-          handleShowHourlyForecast={handleShowHourlyForecast}
-          changeCoord={changeCoord}
-        />
-      ))}
-    </CardList>
   );
 };
