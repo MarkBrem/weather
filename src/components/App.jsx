@@ -7,6 +7,7 @@ import { Footer } from './footer/footer';
 import { WeatherInput } from './hero/hero';
 import { Container } from './container/Container';
 import { GlobalStyle } from "GlobalStyle";
+import { ToastContainer } from 'react-toastify';
 
 import NewsSection from "./container/NewsSection";
 import Gallery from "./gallery/gallery";
@@ -58,7 +59,10 @@ export const App = () => {
       <NewsSection />
          <Gallery />
       <Footer  />
+      
       <GlobalStyle/>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 };

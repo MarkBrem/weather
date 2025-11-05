@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { WeatherList } from './WeatherList';
 import { weatherAPI, weatherAPIKey } from '../API/API';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const WeatherContainer = ({
@@ -52,7 +52,7 @@ export const WeatherContainer = ({
   const updateCityWeather = async cityName => {
     try {
       const response = await fetch(
-        `${weatherAPI}${cityName}&appid=${weatherAPIKey}&units=metric`
+        `${weatherAPI}weather?q=${cityName}&appid=${weatherAPIKey}&units=metric`
       );
       const data = await response.json();
 
@@ -154,7 +154,6 @@ export const WeatherContainer = ({
         handleShowWeeklyForecast={handleShowWeeklyForecast}
         changeCoord={changeCoord}
       />
-      <ToastContainer />
     </>
   );
 };
