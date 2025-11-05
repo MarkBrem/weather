@@ -28,6 +28,7 @@ export const WeatherList = ({
   handleShowDetail,
   handleShowHourlyForecast,
   changeCoord,
+  handleShowWeeklyForecast
 }) => {
   return (
     <CardList>
@@ -40,6 +41,7 @@ export const WeatherList = ({
           handleShowDetail={handleShowDetail}
           handleShowHourlyForecast={handleShowHourlyForecast}
           changeCoord={changeCoord}
+          handleShowWeeklyForecast={handleShowWeeklyForecast}
         />
       ))}
     </CardList>
@@ -53,6 +55,7 @@ export const WeatherCard = ({
   handleShowDetail,
   handleShowHourlyForecast,
   changeCoord,
+  handleShowWeeklyForecast
 }) => {
   return (
     <Card>
@@ -69,7 +72,13 @@ export const WeatherCard = ({
       >
         Hourly forecast
       </HourlyButton>{' '}
-      <WeeklyButton>Weekly forecast</WeeklyButton>
+      <WeeklyButton 
+      onClick={() => {
+          handleShowWeeklyForecast(weather.coord);
+          changeCoord({ lat: weather.coord.lat, lon: weather.coord.lon });
+        }}
+      
+      >Weekly forecast</WeeklyButton>
       <DateText>{weather.date} </DateText>
       <SunImage src={SunIcon} alt="sun" />
       <Temperature>{Math.round(weather.temperature)}°C</Temperature>
