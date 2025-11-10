@@ -56,9 +56,9 @@ export const App = () => {
       {detailCoord && <DetailedInformation coord={detailCoord} />}
       {hourlyCoord && <HourlyForecastChart coord={hourlyCoord} />}
       {showWeekly && <WeeklyWeather coord={coord} />}
-      <NewsSection />
+      {/* <NewsSection /> */}
          <Gallery />
-      <Footer  />
+         <Footer  />
       
       <GlobalStyle/>
 

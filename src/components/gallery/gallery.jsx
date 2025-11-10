@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import Slider from "react-slick";
+import { useWindowSize } from "react-use";
 import "./galleryStyled.css";
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import { SliderItem, SliderStl } from "./GalleryStl.styled";
+import { Container } from "components/container/Container";
 
 export default function Gallery() {
   const [images, setImages] = useState([]);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     const API_KEY = "51118603-b773f8f036f26b3bd962f6338";
@@ -15,27 +18,33 @@ export default function Gallery() {
       .then((data) => setImages(data.hits || []));
   }, []);
 
-  return (
-    <>
-      <br />
-      <Swiper
-        watchSlidesProgress={false}
-        slidesPerView={3}
-        className="mySwiper"
-        loop={true}
-        spaceBetween={25}
-        modules={[Navigation]}
-        navigation
-      >
+  const settings = {
+    dots: false,
+    infinite: true, 
+    speed: 400,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: true,
+    autoplay: false,
+  };
+
+    if (width < 1200) return null;
+
+  return (<>
+  <Container>
+    <h2 style={{ alignSelf: "flex-start", textAlign: "left" }}>Beautiful nature</h2>
+    </Container>
+
+      <SliderStl {...settings}>
         {images.map((img) => (
-          <SwiperSlide key={img.id}>
-            <div className="slide-wrapper">
-              <img src={img.webformatURL} alt={img.tags} />
-            </div>
-            
-          </SwiperSlide>
+          <SliderItem key={img.id}>
+            <img
+              src={img.webformatURL}
+              alt={img.tags}
+              style={{ width: "390px", height: "270px",}}
+            />
+          </SliderItem>
         ))}
-      </Swiper>
-    </>
-  );
+      </SliderStl>
+  </>);
 }
