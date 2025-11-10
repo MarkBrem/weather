@@ -20,6 +20,7 @@ export const elementsDiv = styled.div`
     flex-direction: column;
   }
   display: flex;
+  justify-content: center;
   padding-top: 25px;
 `;
 
